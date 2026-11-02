@@ -6,22 +6,22 @@ use App\DAO\AlunoDAO;
 
 final class Aluno
 {
-    public $id, $nome, $ra, $curso;
+    public $Id, $Nome, $RA, $Curso;
 
     function save() : Aluno
     {
-        return (new AlunoDAO())->save($this);
+        return new AlunoDAO()->save($this);
     }
 
     function getById(int $id) : ?Aluno
     {
-        return (new AlunoDAO())->selectById($id);
+        return new AlunoDAO()->selectById($id);
     
     }
 
     function getAllRows() : array
     {
-        return (new AlunoDAO())->select();
+        return new AlunoDAO()->select();
     }
 
     function delete(int $id) : bool

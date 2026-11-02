@@ -13,7 +13,7 @@ final class AlunoDAO extends DAO
 
     public function save(Aluno $model): Aluno
     {
-        return ($model->id == null) ? $this->insert($model) : $this->update($model);
+        return ($model->Id == null) ? $this->insert($model) : $this->update($model);
     }
 
     public function insert(Aluno $model): Aluno
@@ -21,24 +21,24 @@ final class AlunoDAO extends DAO
         $sql = "INSERT INTO aluno (nome, ra, curso) VALUES (?, ?, ?)";
 
         $stmt = parent::$conexao->prepare($sql);
-        $stmt->bindValue(1, $model->nome);
-        $stmt->bindValue(2, $model->ra);
-        $stmt->bindValue(3, $model->curso);
+        $stmt->bindValue(1, $model->Nome);
+        $stmt->bindValue(2, $model->RA);
+        $stmt->bindValue(3, $model->Curso);
         $stmt->execute();
 
-        $model->id = parent::$conexao->lastInsertId();
+        $model->Id = parent::$conexao->lastInsertId();
 
         return $model;
     }
     public function update(Aluno $model): Aluno
     {
-        $sql = "UPDATE aluno SET nome=?, ra=?, curso=?, WHERE id=?";
+        $sql = "UPDATE aluno SET nome=?, ra=?, curso=? WHERE id=?";
 
         $stmt = parent::$conexao->prepare($sql);
-        $stmt->bindValue(1, $model->nome);
-        $stmt->bindValue(2, $model->ra);
-        $stmt->bindValue(3, $model->curso);
-        $stmt->bindValue(4, $model->id);
+        $stmt->bindValue(1, $model->Nome);
+        $stmt->bindValue(2, $model->RA);
+        $stmt->bindValue(3, $model->Curso);
+        $stmt->bindValue(4, $model->Id);
         $stmt->execute();
 
         return $model;
@@ -66,7 +66,7 @@ final class AlunoDAO extends DAO
 
     public function delete(int $id): bool
     {
-        $sql = "DELETE * FROM aluno WHERE id=?";
+        $sql = "DELETE FROM aluno WHERE id=?";
 
         $stmt = parent::$conexao->prepare($sql);
         $stmt->bindValue(1, $id);
